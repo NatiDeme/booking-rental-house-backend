@@ -1,56 +1,39 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# Tour Booking App (backend)
 
-> Description the project.
+> This is an app in which you can reserve a tour, create a tour, delete a tour and show all your reserved tours. This app was created by separating the Fron-End and the Back-End into two repositories.
 
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
-
-## Live Demo (if available)
-
-[Live Demo Link](https://livedemo.com)
+- Ruby on Rails
+- Postgres
 
 
-## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
+## Setup
 
+If you wish to run the project locally, please do the following:
 
-To get a local copy up and running follow these simple example steps.
+- Clone the repository to your local machine. - **`git clone hhttps://github.com/NatiDeme/tour-booking-backend`** - **`cd tour-booking-backend`**
 
-### Prerequisites
+### Running the app
 
-### Setup
-
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
+- Run `rake db:create:all` and `rake db:migrate`
+- Run `rake db:seed` to populate the database with some sample data.
+- Run `rails s` to start the server.
+- In your browser, go to http://localhost:3000.
 
 
 
 ## Authors
 
-👤 **Author1**
+👤 **Natnael Demelash**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@githubhandle](https://github.com/NatiDeme)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/natnael-demelash/)
 
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
 
 ## 🤝 Contributing
 
