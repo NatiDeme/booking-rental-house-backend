@@ -6,7 +6,7 @@ class Api::V1::TourController < ApplicationController
 
   def create 
     @newTour = Tour.new(tour_params)
-    @newTour.user = authenticate_token!
+    @newTour.user = @current_user
     if @newTour.save
       render json: @newTour, status: :created
     else

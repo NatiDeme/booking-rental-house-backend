@@ -46,5 +46,6 @@ group :development do
   # gem "spring"
 end
 
-gem 'jwt'
 gem 'devise'
+gem 'devise-jwt'
+gem 'rack-cors'
