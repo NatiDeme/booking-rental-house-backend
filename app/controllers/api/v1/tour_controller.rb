@@ -1,4 +1,5 @@
 class Api::V1::TourController < ApplicationController
+  before_action :authenticate_user!
   def index
     @tour = Tour.all
     render json: @tour
@@ -6,7 +7,7 @@ class Api::V1::TourController < ApplicationController
 
   def create 
     @newTour = Tour.new(tour_params)
-    @newTour.user = @current_user
+    @newTour.user = current_user
     if @newTour.save
       render json: @newTour, status: :created
     else
