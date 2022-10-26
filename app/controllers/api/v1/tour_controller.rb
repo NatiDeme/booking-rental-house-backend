@@ -5,16 +5,19 @@ class Api::V1::TourController < ApplicationController
     render json: @tour
   end
 
-  def create 
-    @newTour = Tour.new(tour_params)
-    @newTour.user = current_user
-    if @newTour.save
-      render json: @newTour, status: :created
+  def create
+    @new_tour = Tour.new(tour_params)
+    @new_tour.user = current_user
+    if @new_tour.save
+      render json: @new_tour, status: :created
     else
-      render json: @newTour.error, status: :unprocessable_entity
+      render json: @new_tour.error, status: :unprocessable_entity
+    end
   end
 
   private
+
   def tour_params
-    params.require(:tour).permit(:image,:city,:description,:price,:duration)
+    params.require(:tour).permit(:image, :city, :description, :price, :duration)
+  end
 end
