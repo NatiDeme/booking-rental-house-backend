@@ -49,3 +49,16 @@ end
 # gem 'devise'
 # gem 'devise-jwt'
 gem 'rack-cors'
+
+gem 'jwt'
+
+gem 'bcrypt', '~> 3.1.7'
+
+gem 'rswag'
+
+gem 'rswag-api'
+gem 'rswag-ui'
+
+gem 'rspec-rails', '~> 5.1.2'
+
+gem 'rswag-specs'

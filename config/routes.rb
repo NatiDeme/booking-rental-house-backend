@@ -5,13 +5,8 @@ Rails.application.routes.draw do
   #              registrations: 'users/registrations'
   #            }
   # get '/member-data', to: 'members#show'
-  namespace :api do
-    namespace :v1 do
-      get 'tours' => 'tour#index'
-      get 'delete' => 'tour#destroy'
-      # resources :tours, only: %i[index create]
-    end
-  end
+  get 'tours' => 'tour#index'
+  get 'tour/delete' => 'tour#destroy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
