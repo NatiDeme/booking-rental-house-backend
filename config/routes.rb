@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
+  devise_for :users,
+             controllers: {
+               sessions: 'users/sessions',
+               registrations: 'users/registrations'
+             }
+  get '/member-data', to: 'members#show'
   namespace :api do
     namespace :v1 do
-      get 'tours' => 'tour#index'
+      # get 'tours' => 'tour#index'
       get 'delete' => 'tour#destroy'
+      resources :tours, only: %i[index create]
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
