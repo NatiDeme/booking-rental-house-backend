@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'tours' => 'tour#index'
   get 'tour/delete' => 'tour#destroy'
   post '/login' => 'authentication#login'
+  post '/signup' => 'users#create'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
