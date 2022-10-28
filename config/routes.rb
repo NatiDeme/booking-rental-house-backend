@@ -6,9 +6,13 @@ Rails.application.routes.draw do
   #            }
   # get '/member-data', to: 'members#show'
   get 'tours' => 'tour#index'
-  get 'tour/delete' => 'tour#destroy'
+  post 'tours' => 'tour#create'
+  delete 'tour/delete' => 'tour#destroy'
   post '/login' => 'authentication#login'
   post '/signup' => 'users#create'
+  # resources :tours
+  # resources :users
+  # resources :authentication
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
