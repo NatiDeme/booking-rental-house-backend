@@ -1,8 +1,18 @@
-class Api::V1::TourController < ApplicationController
-  before_action :authenticate_user!
+class TourController < ApplicationController
   def index
-    @tour = Tour.all
+    @tours = Tour.all
+    render json: @tours
+  end
+
+  def show
+    @tour = Tour.find(params[:id])
     render json: @tour
+  end
+
+  def destroy
+    @tour = Tour.find(params[:id])
+    @tour.destroy
+    render json: { success: true, message: 'Tour deleted successfully' }, status: :ok
   end
 
   def create

@@ -1,23 +1,28 @@
 class ApplicationController < ActionController::API
-  # before_action :set_default_format
-  # before_action :authenticate_token!
+  include JsonWebToken
+  before_action :authenticate_request
 
-  # private
+  protected
 
-  # def set_default_format
-  #     request.format = :json
-  # end
+  def authenticate_request
+    header = request.headers['Authorization']
+    if header.present?
+      begin
+        header = header.split.last if header
+        decoded = jwt_decode(header)
+        @current_user = User.find(decoded[:user_id])
+      rescue ActiveRecord::RecordNotFound => e
+        render json: { errors: e.message }, status: :unauthorized
+      end
 
-  # def auth_token
-  #     @auth_token ||= request.headers.fetch("Authorization","").split(" ").last
-  # end
+    end
+    render json: { errors: 'Authorization header not present' }.to_json, status: :bad_request unless header
+  end
 
-  # def auauthenticate_token!
-  #     payload = JsonWebToken.decode auth_token
-  #     if payload.present?
-  #         @current_user = User.find(payload["sub"])
-  #     else
-  #         render json: {errors: ["Invalid auth token"]}, status: :unauthorized
-  #     end
-  # end
+  def current_user
+    header = request.headers['Authorization']
+    header = header.split.last if header
+    decoded = jwt_decode(header)
+    @current_user = User.find(decoded[:user_id])
+  end
 end
