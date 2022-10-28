@@ -1,5 +1,5 @@
 class AuthenticationController < ApplicationController
-    skip_before_action :authenticate_request
+  skip_before_action :authenticate_request
 
   def login
     @user = User.find_by_username(params[:username])

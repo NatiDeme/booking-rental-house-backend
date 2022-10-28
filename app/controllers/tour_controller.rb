@@ -1,9 +1,9 @@
 class TourController < ApplicationController
-    def index
+  def index
     @tours = Tour.all
     render json: @tours
   end
-  
+
   def show
     @tour = Tour.find(params[:id])
     render json: @tour
@@ -12,7 +12,7 @@ class TourController < ApplicationController
   def destroy
     @tour = Tour.find(params[:id])
     @tour.destroy
-    render json: { success: true, message: 'Tour deleted successfully'}, status: :ok
+    render json: { success: true, message: 'Tour deleted successfully' }, status: :ok
   end
 
   def create
