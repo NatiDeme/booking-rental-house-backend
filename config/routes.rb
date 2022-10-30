@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   delete 'tour/delete' => 'tour#destroy'
   post '/login' => 'authentication#login'
   post '/signup' => 'users#create'
+  post '/reserve' => 'reservation#create'
   # resources :tours
   # resources :users
   # resources :authentication
