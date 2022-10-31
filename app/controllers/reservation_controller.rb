@@ -1,5 +1,5 @@
 class ReservationController < ApplicationController
-    def index
+  def index
     @reservations = @current_user.reservations
     @result = []
     @reservations.each do |reserved|
@@ -13,25 +13,24 @@ class ReservationController < ApplicationController
     render json: @tour
   end
 
-    def create
-      @reservation = Reservation.new(reserve_params)
-      @tour_id = params.permit(:tour_id)
-      @tour = Tour.find_by(id: @tour_id['tour_id'])
-      @reservation.tours = @tour
-      @reservation.user = current_user
-      if @reservation.save
+  def create
+    @reservation = Reservation.new(reserve_params)
+    @tour_id = params.permit(:tour_id)
+    @tour = Tour.find_by(id: @tour_id['tour_id'])
+    @reservation.tours = @tour
+    @reservation.user = current_user
+    if @reservation.save
       render json: @reservation, status: :created
     else
       render json: @reservation.error, status: :unprocessable_entity
     end
+  end
 
-    def destroy
+  def destroy
     @current_user.reservations.find(params[:id]).destroy
   end
 
-    end
-
-    private
+  private
 
   def reserve_params
     params.permit(:date)
