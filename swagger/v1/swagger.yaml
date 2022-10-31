@@ -4,6 +4,28 @@ info:
   title: API V1
   version: v1
 paths:
+  "/login":
+    post:
+      summary: Login a user
+      tags:
+      - users
+      parameters: []
+      responses:
+        '200':
+          description: Login successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+              - username
+              - password
   "/signup":
     post:
       summary: Creates a user
