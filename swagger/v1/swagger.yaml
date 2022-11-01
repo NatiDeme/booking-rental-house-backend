@@ -47,7 +47,7 @@ paths:
               required:
               - username
               - password
-  "/user_reservation":
+  "/reserve":
     post:
       summary: create new reservation
       tags:
@@ -57,7 +57,7 @@ paths:
       parameters: []
       responses:
         '201':
-          description: Tour successfully created
+          description: Reservation successfully created
       requestBody:
         content:
           application/json:
@@ -66,29 +66,16 @@ paths:
               properties:
                 date:
                   type: string
-                image:
-                  type: string
-                city:
-                  type: string
-                description:
-                  type: string
-                price:
-                  type: float
-                duration:
-                  type: float
-              required:
-              - name
-              - city
-              - price
+  "/user_reservations":
     get:
-      summary: grab all tours
+      summary: grab all reservations
       tags:
-      - tours
+      - reservations
       security:
       - bearerAuth: []
       responses:
         '200':
-          description: Tours successfully grabbed
+          description: Reservations successfully grabbed
           content:
             application/json:
               schema:
@@ -96,27 +83,17 @@ paths:
                 items:
                   type: object
                   properties:
-                    name:
+                    tour:
                       type: string
-                    image:
+                    date:
                       type: string
-                    city:
-                      type: string
-                    description:
-                      type: string
-                    price:
-                      type: decimal
-                    duration:
-                      type: decimal
-                  required:
-                  - name
-                  - city
-                  - price
-  "/tours/{id}":
+                    reservation_id:
+                      type: integer
+  "/user_reservations/{id}":
     get:
-      summary: retrieve a tour
+      summary: retrieve a reservation
       tags:
-      - tours
+      - reservations
       security:
       - bearerAuth: []
       parameters:
@@ -133,18 +110,12 @@ paths:
               schema:
                 type: object
                 properties:
-                  name:
-                    type: string
-                  image:
-                    type: string
-                  city:
-                    type: string
-                  description:
-                    type: string
-                  price:
-                    type: number
-                  duration:
-                    type: number
+                  tour:
+                    type: object
+                  date:
+                    type: date
+                  reservation_id:
+                    type: integer
   "/tours":
     post:
       summary: create new tour
@@ -210,11 +181,44 @@ paths:
                   - name
                   - city
                   - price
+  "/tours/{id}":
+    get:
+      summary: retrieve a tour
+      tags:
+      - tours
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tour successfully retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  image:
+                    type: string
+                  city:
+                    type: string
+                  description:
+                    type: string
+                  price:
+                    type: number
+                  duration:
+                    type: number
   "/signup":
     post:
       summary: Creates a user
       tags:
-      - Users
+      - users
       parameters: []
       responses:
         '201':

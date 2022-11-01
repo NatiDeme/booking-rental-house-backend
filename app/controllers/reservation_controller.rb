@@ -9,8 +9,8 @@ class ReservationController < ApplicationController
   end
 
   def show
-    @tour = Tour.find(params[:id])
-    render json: @tour
+    @reservation = Reservation.find(params[:id])
+    render json: { tour: Tour.find(@reservation.tours_id), date: @reservation.date, reservation_id: @reservation.id }
   end
 
   def create

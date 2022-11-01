@@ -3,7 +3,7 @@ require 'swagger_helper'
 describe 'Users API' do
     path '/signup' do
         post 'Creates a user' do
-            tags 'Users'
+            tags 'users'
             consumes 'application/json'
             parameter name: :user, in: :body, schema: {
                 type: :object,

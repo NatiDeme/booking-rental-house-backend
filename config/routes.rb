@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post 'tours' => 'tour#create'
   get 'tours/:id' => 'tour#show'
   get 'user_reservations' => 'reservation#index'
-  get 'user_reservation' => 'reservation#show'
+  get 'user_reservations/:id' => 'reservation#show'
   delete 'user_reservation' => 'reservation#destroy'
   delete 'tour/delete' => 'tour#destroy'
   post '/login' => 'authentication#login'
