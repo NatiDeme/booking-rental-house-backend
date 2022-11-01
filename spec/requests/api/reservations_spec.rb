@@ -1,22 +1,22 @@
 require 'swagger_helper'
 include JsonWebToken
 
-describe 'Tours API' do
-    path '/tours' do
-        post 'create new tour' do
-            tags 'tours'
+describe 'Reservation API' do
+    path '/user_reservation' do
+        post 'create new reservation' do
+            tags 'reservations'
             consumes 'application/json'
             produces 'application/json'
             security [ bearerAuth: [] ]   
-            parameter name: :tour, in: :body, schema: {
+            parameter name: :reservation, in: :body, schema: {
                 type: :object,
                 properties: {
-                    name: {type: :string},
+                    date: {type: :string},
                     image: {type: :string},
                     city: {type: :string},
                     description: {type: :string},
-                    price: {type: :number},
-                    duration: {type: :number}
+                    price: {type: :float},
+                    duration: {type: :float}
                 },
                 required: ["name", "city", "price"]
             } 
@@ -49,8 +49,8 @@ describe 'Tours API' do
                             image: {type: :string},
                             city: {type: :string},
                             description: {type: :string},
-                            price: {type: :number},
-                            duration: {type: :number}
+                            price: {type: :decimal},
+                            duration: {type: :decimal}
                     },
                     required: ["name", "city", "price"]
             }      
@@ -75,8 +75,8 @@ describe 'Tours API' do
                             image: {type: :string},
                             city: {type: :string},
                             description: {type: :string},
-                            price: {type: :number},
-                            duration: {type: :number}
+                            price: {type: :decimal},
+                            duration: {type: :decimal}
                     }
                 let(:id) {Tour.create(name: "Great wall of china",image: "",city: "China",description: "cool place",price: 200.5, duration: 50, user_id: User.last.id).id}
                 run_test!

@@ -47,11 +47,11 @@ paths:
               required:
               - username
               - password
-  "/tours":
+  "/user_reservation":
     post:
-      summary: create new tour
+      summary: create new reservation
       tags:
-      - tours
+      - reservations
       security:
       - bearerAuth: []
       parameters: []
@@ -64,7 +64,7 @@ paths:
             schema:
               type: object
               properties:
-                name:
+                date:
                   type: string
                 image:
                   type: string
@@ -142,9 +142,74 @@ paths:
                   description:
                     type: string
                   price:
-                    type: decimal
+                    type: number
                   duration:
-                    type: decimal
+                    type: number
+  "/tours":
+    post:
+      summary: create new tour
+      tags:
+      - tours
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '201':
+          description: Tour successfully created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                image:
+                  type: string
+                city:
+                  type: string
+                description:
+                  type: string
+                price:
+                  type: number
+                duration:
+                  type: number
+              required:
+              - name
+              - city
+              - price
+    get:
+      summary: grab all tours
+      tags:
+      - tours
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Tours successfully grabbed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    image:
+                      type: string
+                    city:
+                      type: string
+                    description:
+                      type: string
+                    price:
+                      type: number
+                    duration:
+                      type: number
+                  required:
+                  - name
+                  - city
+                  - price
   "/signup":
     post:
       summary: Creates a user
