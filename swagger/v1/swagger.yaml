@@ -106,7 +106,7 @@ paths:
           type: string
       responses:
         '200':
-          description: Tour successfully retrieved
+          description: Reservation successfully retrieved
           content:
             application/json:
               schema:
@@ -118,6 +118,21 @@ paths:
                     type: date
                   reservation_id:
                     type: integer
+    delete:
+      summary: remove reservation
+      tags:
+      - reservations
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Reservation deleted
   "/tours":
     post:
       summary: create new tour
@@ -213,9 +228,24 @@ paths:
                   description:
                     type: string
                   price:
-                    type: number
+                    type: string
                   duration:
-                    type: number
+                    type: string
+    delete:
+      summary: remove tour
+      tags:
+      - tours
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tour deleted
   "/signup":
     post:
       summary: Creates a user
