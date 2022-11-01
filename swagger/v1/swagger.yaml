@@ -73,9 +73,9 @@ paths:
                 description:
                   type: string
                 price:
-                  type: decimal
+                  type: float
                 duration:
-                  type: decimal
+                  type: float
               required:
               - name
               - city
@@ -112,6 +112,39 @@ paths:
                   - name
                   - city
                   - price
+  "/tours/{id}":
+    get:
+      summary: retrieve a tour
+      tags:
+      - tours
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tour successfully retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  image:
+                    type: string
+                  city:
+                    type: string
+                  description:
+                    type: string
+                  price:
+                    type: decimal
+                  duration:
+                    type: decimal
   "/signup":
     post:
       summary: Creates a user

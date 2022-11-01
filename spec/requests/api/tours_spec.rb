@@ -15,8 +15,8 @@ describe 'Tours API' do
                     image: {type: :string},
                     city: {type: :string},
                     description: {type: :string},
-                    price: {type: :decimal},
-                    duration: {type: :decimal}
+                    price: {type: :float},
+                    duration: {type: :float}
                 },
                 required: ["name", "city", "price"]
             } 
@@ -54,6 +54,31 @@ describe 'Tours API' do
                     },
                     required: ["name", "city", "price"]
             }      
+                run_test!
+            end
+        end
+
+        
+    end
+
+    path '/tours/{id}' do
+        get 'retrieve a tour' do
+            tags 'tours'
+            produces 'application/json'
+            security [ bearerAuth: [] ] 
+            parameter name: :id, in: :path, type: :string
+            response '200', 'Tour successfully retrieved' do
+                let(:Authorization) {"Bearer #{jwt_encode(user_id: User.last.id)}"}
+                schema type: :object,
+                       properties: { 
+                            name: {type: :string},
+                            image: {type: :string},
+                            city: {type: :string},
+                            description: {type: :string},
+                            price: {type: :decimal},
+                            duration: {type: :decimal}
+                    }
+                let(:id) {Tour.create(name: "Great wall of china",image: "",city: "China",description: "cool place",price: 200.5, duration: 50, user_id: User.last.id).id}
                 run_test!
             end
         end

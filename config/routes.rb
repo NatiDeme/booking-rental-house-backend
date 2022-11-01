@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # get '/member-data', to: 'members#show'
   get 'tours' => 'tour#index'
   post 'tours' => 'tour#create'
+  get 'tours/:id' => 'tour#show'
   get 'user_reservations' => 'reservation#index'
   get 'user_reservation' => 'reservation#show'
   delete 'user_reservation' => 'reservation#destroy'
