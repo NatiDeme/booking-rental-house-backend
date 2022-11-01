@@ -75,9 +75,21 @@ describe 'Tours API' do
                             image: {type: :string},
                             city: {type: :string},
                             description: {type: :string},
-                            price: {type: :number},
-                            duration: {type: :number}
+                            price: {type: :string},
+                            duration: {type: :string}
                     }
+                let(:id) {Tour.create(name: "Great wall of china",image: "",city: "China",description: "cool place",price: 200.5, duration: 50, user_id: User.last.id).id}
+                run_test!
+            end
+        end
+
+        delete 'remove tour' do
+            tags 'tours'
+            produces 'application/json'
+            security [ bearerAuth: [] ] 
+            parameter name: :id, in: :path, type: :string
+            response '200', "Tour deleted" do
+                let(:Authorization) {"Bearer #{jwt_encode(user_id: User.last.id)}"}
                 let(:id) {Tour.create(name: "Great wall of china",image: "",city: "China",description: "cool place",price: 200.5, duration: 50, user_id: User.last.id).id}
                 run_test!
             end
