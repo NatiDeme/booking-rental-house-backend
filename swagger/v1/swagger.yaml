@@ -66,6 +66,8 @@ paths:
               properties:
                 date:
                   type: string
+                tour_id:
+                  type: integer
   "/user_reservations":
     get:
       summary: grab all reservations
@@ -84,7 +86,7 @@ paths:
                   type: object
                   properties:
                     tour:
-                      type: string
+                      type: object
                     date:
                       type: string
                     reservation_id:

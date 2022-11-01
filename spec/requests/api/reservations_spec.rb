@@ -54,7 +54,7 @@ describe 'Reservation API' do
             produces 'application/json'
             security [ bearerAuth: [] ] 
             parameter name: :id, in: :path, type: :string
-            response '200', 'Tour successfully retrieved' do
+            response '200', 'Reservation successfully retrieved' do
                 let(:Authorization) {"Bearer #{jwt_encode(user_id: User.last.id)}"}
                 schema type: :object,
                        properties: { 
@@ -62,6 +62,18 @@ describe 'Reservation API' do
                         date: {type: :date},
                         reservation_id: {type: :integer}
                     }
+                let(:id) {Reservation.create(date: Date.new(2022,11,1),tours_id: Tour.create(name: "Great wall of china",image: "",city: "China",description: "cool place",price: 200.5, duration: 50, user_id: User.last.id).id, user_id: User.last.id).id}
+                run_test!
+            end
+        end
+
+        delete 'remove reservation' do
+            tags 'reservations'
+            produces 'application/json'
+            security [ bearerAuth: [] ] 
+            parameter name: :id, in: :path, type: :string
+            response '200', "Reservation deleted" do
+                let(:Authorization) {"Bearer #{jwt_encode(user_id: User.last.id)}"}
                 let(:id) {Reservation.create(date: Date.new(2022,11,1),tours_id: Tour.create(name: "Great wall of china",image: "",city: "China",description: "cool place",price: 200.5, duration: 50, user_id: User.last.id).id, user_id: User.last.id).id}
                 run_test!
             end
