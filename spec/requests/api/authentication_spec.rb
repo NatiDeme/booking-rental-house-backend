@@ -16,6 +16,17 @@ describe 'Authenticate API' do
             }
 
             response '200', 'Login successful' do
+                schema type: :object,
+                properties: {
+                    token: { type: :string },
+                    user: { 
+                        type: :object,
+                        properties: {
+                            name: {type: :string},
+                            user_id: {type: :integer}
+                        }
+                    },
+                }
                 user1 = User.create( 
                     name: "name",
                     password: "password",
@@ -26,7 +37,16 @@ describe 'Authenticate API' do
                     username: user1.username,
                     password: user1.password
                 }
-            }
+                }
+                run_test!
+            end
+            response '401', 'Login failed' do
+                let(:login_param) {
+                {
+                    username: "",
+                    password: ""
+                }
+                }
                 run_test!
             end
         end

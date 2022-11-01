@@ -3,6 +3,11 @@ openapi: 3.0.1
 info:
   title: API V1
   version: v1
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
 paths:
   "/login":
     post:
@@ -13,6 +18,22 @@ paths:
       responses:
         '200':
           description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  user:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      user_id:
+                        type: integer
+        '401':
+          description: Login failed
       requestBody:
         content:
           application/json:
@@ -26,6 +47,71 @@ paths:
               required:
               - username
               - password
+  "/tours":
+    post:
+      summary: create new tour
+      tags:
+      - tours
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '201':
+          description: Tour successfully created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                image:
+                  type: string
+                city:
+                  type: string
+                description:
+                  type: string
+                price:
+                  type: decimal
+                duration:
+                  type: decimal
+              required:
+              - name
+              - city
+              - price
+    get:
+      summary: grab all tours
+      tags:
+      - tours
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Tours successfully grabbed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    image:
+                      type: string
+                    city:
+                      type: string
+                    description:
+                      type: string
+                    price:
+                      type: decimal
+                    duration:
+                      type: decimal
+                  required:
+                  - name
+                  - city
+                  - price
   "/signup":
     post:
       summary: Creates a user
