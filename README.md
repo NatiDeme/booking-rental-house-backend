@@ -4,13 +4,14 @@
 
 > This is an app in which you can reserve a tour, create a tour, delete a tour and show all your reserved tours. This app was created by separating the Fron-End and the Back-End into two repositories.
 
+## API documentation
+
+- https://booking-tour-app.herokuapp.com/api-docs/index.html
 
 ## Built With
 
 - Ruby on Rails
 - Postgres
-
-
 
 ## Setup
 
@@ -25,8 +26,6 @@ If you wish to run the project locally, please do the following:
 - Run `rails s` to start the server.
 - In your browser, go to http://localhost:3000.
 
-
-
 ## Authors
 
 👤 **Natnael Demelash**
@@ -34,6 +33,10 @@ If you wish to run the project locally, please do the following:
 - GitHub: [@githubhandle](https://github.com/NatiDeme)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/natnael-demelash/)
 
+👤 **Taiwo Damola Adediran**
+
+- GitHub: [@githubhandle](https://github.com/tylher)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/taiwo-adediran-327654127/)
 
 ## 🤝 Contributing
 
