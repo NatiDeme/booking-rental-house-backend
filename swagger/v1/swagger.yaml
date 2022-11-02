@@ -1,0 +1,280 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+paths:
+  "/login":
+    post:
+      summary: Login a user
+      tags:
+      - users
+      parameters: []
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  user:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      user_id:
+                        type: integer
+        '401':
+          description: Login failed
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+              - username
+              - password
+  "/reserve":
+    post:
+      summary: create new reservation
+      tags:
+      - reservations
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '201':
+          description: Reservation successfully created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                tour_id:
+                  type: integer
+  "/user_reservations":
+    get:
+      summary: grab all reservations
+      tags:
+      - reservations
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Reservations successfully grabbed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    tour:
+                      type: object
+                    date:
+                      type: string
+                    reservation_id:
+                      type: integer
+  "/user_reservations/{id}":
+    get:
+      summary: retrieve a reservation
+      tags:
+      - reservations
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Reservation successfully retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tour:
+                    type: object
+                  date:
+                    type: date
+                  reservation_id:
+                    type: integer
+    delete:
+      summary: remove reservation
+      tags:
+      - reservations
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Reservation deleted
+  "/tours":
+    post:
+      summary: create new tour
+      tags:
+      - tours
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '201':
+          description: Tour successfully created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                image:
+                  type: string
+                city:
+                  type: string
+                description:
+                  type: string
+                price:
+                  type: number
+                duration:
+                  type: number
+              required:
+              - name
+              - city
+              - price
+    get:
+      summary: grab all tours
+      tags:
+      - tours
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Tours successfully grabbed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    image:
+                      type: string
+                    city:
+                      type: string
+                    description:
+                      type: string
+                    price:
+                      type: number
+                    duration:
+                      type: number
+                  required:
+                  - name
+                  - city
+                  - price
+  "/tours/{id}":
+    get:
+      summary: retrieve a tour
+      tags:
+      - tours
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tour successfully retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  image:
+                    type: string
+                  city:
+                    type: string
+                  description:
+                    type: string
+                  price:
+                    type: string
+                  duration:
+                    type: string
+    delete:
+      summary: remove tour
+      tags:
+      - tours
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tour deleted
+  "/signup":
+    post:
+      summary: Creates a user
+      tags:
+      - users
+      parameters: []
+      responses:
+        '201':
+          description: user created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                password:
+                  type: string
+                username:
+                  type: string
+                email:
+                  type: string
+              required:
+              - name
+              - email
+              - password
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com

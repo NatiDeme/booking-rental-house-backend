@@ -1,4 +1,6 @@
 class TourController < ApplicationController
+  skip_before_action :authenticate_request, only: [:index]
+
   def index
     @tours = Tour.all
     render json: @tours
@@ -28,6 +30,6 @@ class TourController < ApplicationController
   private
 
   def tour_params
-    params.permit(:image, :city, :description, :price, :duration)
+    params.permit(:image, :city, :description, :price, :duration, :name)
   end
 end

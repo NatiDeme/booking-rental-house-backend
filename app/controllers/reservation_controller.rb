@@ -9,8 +9,8 @@ class ReservationController < ApplicationController
   end
 
   def show
-    @tour = Tour.find(params[:id])
-    render json: @tour
+    @reservation = Reservation.find(params[:id])
+    render json: { tour: Tour.find(@reservation.tours_id), date: @reservation.date, reservation_id: @reservation.id }
   end
 
   def create
@@ -27,7 +27,11 @@ class ReservationController < ApplicationController
   end
 
   def destroy
-    @current_user.reservations.find(params[:id]).destroy
+    if @current_user.reservations.find(params[:id]).destroy
+      render json: { success: true, message: 'Reservation deleted successfully' }, status: :ok
+    else
+      render json: @reservation.error, status: :unprocessable_entity
+    end
   end
 
   private
