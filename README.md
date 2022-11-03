@@ -3,6 +3,7 @@
 # Tour Booking App (backend)
 
 > This is an app in which you can reserve a tour, create a tour, delete a tour and show all your reserved tours. This app was created by separating the Fron-End and the Back-End into two repositories.
+> ![Screenshot](Screenshot.png)
 
 ## API documentation
 
@@ -25,6 +26,11 @@ If you wish to run the project locally, please do the following:
 - Run `rake db:seed` to populate the database with some sample data.
 - Run `rails s` to start the server.
 - In your browser, go to http://localhost:3000.
+
+### Running test
+
+- Run `rails db:migrate RAILS_ENV=test` to migrate on test database
+- Run `rake rswag` to run the test
 
 ## Authors
 
@@ -56,6 +62,4 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is [MIT](./LICENSE) licensed.
-
-_NOTE: we recommend using the [MIT license](https://choosealicense.com/licenses/mit/) - you can set it up quickly by [using templates available on GitHub](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository). You can also use [any other license](https://choosealicense.com/licenses/) if you wish._
+This project is [MIT](./MIT.md) licensed.
