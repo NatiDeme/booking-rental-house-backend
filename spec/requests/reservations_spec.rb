@@ -1,5 +1,5 @@
 require 'swagger_helper'
-# include JsonWebToken
+
 require './app/controllers/concerns/json_web_token'
 
 describe 'Reservation API' do

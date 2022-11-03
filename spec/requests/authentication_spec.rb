@@ -1,4 +1,5 @@
 require 'swagger_helper'
+require 'rails_helper'
 
 describe 'Authenticate API' do
   path '/login' do
