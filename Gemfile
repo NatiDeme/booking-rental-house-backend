@@ -61,4 +61,5 @@ gem 'rswag-ui'
 
 gem 'rspec-rails', '~> 5.1.2'
 
+gem 'cancancan'
 gem 'rswag-specs'
