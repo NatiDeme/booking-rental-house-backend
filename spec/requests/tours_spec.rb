@@ -1,5 +1,6 @@
 require 'swagger_helper'
 require './app/controllers/concerns/json_web_token'
+require 'rails_helper'
 
 describe 'Tours API' do
   path '/tours' do
