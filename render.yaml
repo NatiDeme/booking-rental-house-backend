@@ -1,0 +1,18 @@
+databases:
+  - name: tour_booking
+    databaseName: tour_booking
+    user: tour_booking
+
+services:
+  - type: web
+    name: Tour-booking
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: tour_booking
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
