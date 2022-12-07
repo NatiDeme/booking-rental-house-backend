@@ -7,7 +7,8 @@
 
 ## API documentation
 
-- https://booking-tour-app.herokuapp.com/api-docs/index.html
+<!-- - https://booking-tour-app.herokuapp.com/api-docs/index.html -->
+- https://tour-booking.onrender.com/api-docs/index.html
 
 ## Kanban Board
 
