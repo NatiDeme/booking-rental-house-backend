@@ -90,6 +90,4 @@ test:
 #
 production:
   <<: *default
-  database: tour_booking_production
-  username: postgres
-  password: <%= ENV["ME_DATABASE_PASSWORD"] %>
+  password: <%= ENV["DATABASE_URL"] %>
