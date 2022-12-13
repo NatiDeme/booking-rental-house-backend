@@ -1,5 +1,5 @@
 class TourController < ApplicationController
-  skip_before_action :authenticate_request, only: [:index]
+  skip_before_action :authenticate_request, only: [:index, :show]
 
   def index
     @tours = Tour.all
